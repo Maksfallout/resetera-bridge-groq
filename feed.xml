@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+  <channel>
+    <title>Gaming Daily Pick</title>
+    <link>https://www.resetera.com/forums/gaming-headlines.54/</link>
+    <description>Главная игровая новость — рерайт на русском</description>
+    <docs>http://www.rssboard.org/rss-specification</docs>
+    <generator>python-feedgen</generator>
+    <language>ru</language>
+    <lastBuildDate>Sun, 10 May 2026 19:18:36 +0000</lastBuildDate>
+    <item>
+      <title>Sony предлагает обновить PS4 для GTA 6. Релиз в 2026 году не откладывается.</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>Сообщество игроков получило письма от PlayStation, где владельцам PS4 советуют обновиться до PS5, чтобы в будущем сыграть в Grand Theft Auto 6. Релиз игры назначен на 19 ноября 2026 года, и, судя по всему, дата не сдвинулась с места. Это подтверждает, что разработка идёт по графику, несмотря на предыдущие слухи о задержках.
+
+Также стало известно, что игра получила рейтинг 17+ от ESRB из-за жестокости, ненормативной лексики и других факторов. 🚨 Важный момент: пока нет информации о выпуске на ПК. Все анонсы пока касаются только консольных версий. Цена пока не объявлена, но ранее оценивалась в $100. Глава Take-Two Зельник заявил, что компания сделает всё возможное, чтобы поддержать даже Xbox Series S.
+
+Новости уже вызвали волну обсуждений. Если у вас стоит в ожидании GTA 6, то обновление консоли может быть неизбежным шагом. 🎮 Но пока остаётся вопрос: справятся ли разработчики с масштабными ожиданиями?
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1515913</guid>
+      <pubDate>Sun, 10 May 2026 19:18:36 +0000</pubDate>
+    </item>
+  </channel>
+</rss>
