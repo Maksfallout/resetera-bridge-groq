@@ -35,7 +35,7 @@ from common import (
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
  
 MODEL_CURATOR  = "llama-3.3-70b-versatile"     # Production, 280 t/s, качественная логика
-MODEL_DEDUP    = "llama-3.1-8b-instant"        # Production, 560 t/s, для бинарного ответа
+MODEL_DEDUP    = "llama-3.3-70b-versatile"        # Production, 560 t/s, для бинарного ответа
 MODEL_REWRITER = "qwen/qwen3-32b"              # Preview, 400 t/s, отличный русский
  
 # Альтернативы рерайтера если Qwen уберут из Preview:
@@ -49,7 +49,10 @@ MAX_ITEMS_IN_FEED = 10         # сколько последних постов 
 # Подпись добавляется в коде, не через ИИ — гарантирует точное соблюдение формата
 PIXEL_SIGNATURE = "📰 Дежурный по новостям: Пиксель."
 # Жёсткий лимит на title + text (без подписи) для запаса под Telegram-лимит 1024
-MAX_TOTAL_CHARS = 850 - len(PIXEL_SIGNATURE) - 4  # минус подпись и пара переносов строки
+# Жёсткий лимит на title + text (от ИИ). Гарантирует, что итоговый пост с подписью
+# и ссылкой от Hooppy уложится в Telegram-лимит 1024 с запасом.
+MAX_AI_CHARS = 800
+HARD_TOTAL_LIMIT = 1000  # абсолютный максимум итогового поста с подписью
 # ============================
  
 FEED_TITLE = "Gaming Daily Pick"
@@ -349,12 +352,15 @@ def is_duplicate_story(chosen_title, published_titles, api_key):
  
     titles_list = "\n".join(f"- {t}" for t in published_titles[-10:])
     prompt = (
-        f"Перед тобой заголовок новой статьи и список уже опубликованных заголовков.\n\n"
+        f"Сравни новую статью с уже опубликованными. Это дубль ТОЛЬКО если они описывают ОДНО И ТО ЖЕ конкретное событие или новость.\n\n"
         f"Новая статья: {chosen_title}\n\n"
-        f"Уже опубликованные заголовки:\n{titles_list}\n\n"
-        f"Вопрос: рассказывает ли новая статья по сути об ТОМ ЖЕ событии что и одна из "
-        f"уже опубликованных? Учитывай смысл, а не точное совпадение слов.\n\n"
-        f"Верни СТРОГО одно слово: YES если это дубль, NO если это другая история."
+        f"Уже опубликованные:\n{titles_list}\n\n"
+        f"ПРАВИЛА:\n"
+        f"- Дубль = одна и та же новость, разные источники (например 'Sony объявила о PS6' и 'PlayStation анонсировала PS6').\n"
+        f"- НЕ дубль = разные новости про одну и ту же игру/компанию (например 'GTA 6 получила рейтинг 17+' и 'Sony советует обновиться до PS5 ради GTA 6' — это РАЗНЫЕ события).\n"
+        f"- НЕ дубль = разные аспекты одной игры (анонс даты выхода, спонсорство, рейтинг, скидки — всё это разные новости).\n"
+        f"- НЕ дубль = одна компания упомянута в обеих статьях, но события разные.\n\n"
+        f"Ответ строго одним словом: YES (дубль) или NO (разные события)."
     )
     print(f"  Дубль-чек (модель: {MODEL_DEDUP})...")
     answer = call_groq(prompt, api_key, model=MODEL_DEDUP, json_mode=False, temperature=0.0)
@@ -396,7 +402,48 @@ def strip_emojis(text):
     cleaned = re.sub(r" *\n *", "\n", cleaned)
     return cleaned.strip()
  
- 
+def smart_trim(text, target_len):
+    """
+    Обрезает текст до target_len символов аккуратно:
+    1. Сначала пытается обрезать по концу абзаца (по \n\n)
+    2. Если абзацы не помогают — обрезает по концу предложения (. ! ?)
+    3. В крайнем случае обрезает по слову с многоточием
+    """
+    if len(text) <= target_len:
+        return text
+
+    # Попытка 1: обрезать по концу абзаца
+    paragraphs = text.split("\n\n")
+    result = ""
+    for p in paragraphs:
+        candidate = result + ("\n\n" if result else "") + p
+        if len(candidate) > target_len:
+            break
+        result = candidate
+    if result and len(result) >= target_len * 0.6:
+        return result
+
+    # Попытка 2: обрезать по предложению, сохраняя структуру абзацев
+    truncated = text[:target_len]
+    # Ищем последний знак конца предложения
+    last_sentence_end = max(
+        truncated.rfind(". "),
+        truncated.rfind("! "),
+        truncated.rfind("? "),
+        truncated.rfind(".\n"),
+        truncated.rfind("!\n"),
+        truncated.rfind("?\n"),
+    )
+    if last_sentence_end > target_len * 0.5:
+        return truncated[:last_sentence_end + 1]
+
+    # Попытка 3: обрезать по слову с многоточием
+    last_space = truncated.rfind(" ")
+    if last_space > 0:
+        return truncated[:last_space] + "…"
+
+    return truncated + "…"
+
 def rewrite_article(article_text, api_key):
     """Просит ИИ сделать рерайт+перевод. Возвращает (title, text) или None.
     Подпись 'Пиксель' добавляется здесь же, в коде."""
@@ -436,23 +483,27 @@ def rewrite_article(article_text, api_key):
                 mid = len(sentences) // 2
                 text_clean = " ".join(sentences[:mid]) + "\n\n" + " ".join(sentences[mid:])
  
+        # Если ИИ превысил лимит — жёстко обрезаем по концу абзаца или предложения
+        ai_chars_before = len(title_clean) + len(text_clean)
+        if ai_chars_before > MAX_AI_CHARS:
+            print(f"  ⚠ ИИ превысил лимит на {ai_chars_before - MAX_AI_CHARS} симв. Обрезаю.")
+            text_clean = smart_trim(text_clean, MAX_AI_CHARS - len(title_clean))
+
         # Добавляем захардкоженную подпись
         full_text = text_clean + "\n\n" + PIXEL_SIGNATURE
- 
-        # Логирование размеров
-        ai_chars = len(title_clean) + len(text_clean)
+        ai_chars_after = len(title_clean) + len(text_clean)
         total_chars = len(title_clean) + len(full_text)
+
         print(f"✓ Заголовок: {title_clean}")
-        print(f"✓ Текст ИИ: {len(text_clean)} знаков")
-        print(f"  title + text от ИИ: {ai_chars} символов (лимит {MAX_TOTAL_CHARS})")
-        print(f"  Итого с подписью: {total_chars} символов (лимит TG: 1024)")
- 
-        if ai_chars > MAX_TOTAL_CHARS:
-            print(f"  ⚠ Превышение лимита на {ai_chars - MAX_TOTAL_CHARS} симв. Пост всё равно отправляется.")
-        if total_chars > 1024:
-            print(f"  ⚠ ПРЕВЫШЕНИЕ TELEGRAM-ЛИМИТА на {total_chars - 1024} симв. Возможна обрезка!")
- 
+        print(f"✓ Текст ИИ (после обрезки): {len(text_clean)} знаков")
+        print(f"  title + text: {ai_chars_after} симв. (лимит {MAX_AI_CHARS})")
+        print(f"  Итого с подписью: {total_chars} симв. (жёсткий лимит {HARD_TOTAL_LIMIT})")
+
+        if total_chars > HARD_TOTAL_LIMIT:
+            print(f"  ⚠ Всё ещё превышение на {total_chars - HARD_TOTAL_LIMIT} симв. после обрезки.")
+
         return title_clean, full_text
+     
     except Exception as e:
         print(f"✗ Не смог распарсить JSON рерайтера: {e}")
         print(f"  Ответ был: {answer[:300]}")
