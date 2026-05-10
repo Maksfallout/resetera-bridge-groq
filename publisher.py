@@ -1,0 +1,474 @@
+"""
+Публикатор v2 (Groq):
+раз в час выбирает лучшую новую статью через ИИ-куратора,
+проверяет на смысловой дубль, скачивает полный текст,
+делает рерайт+перевод через ИИ-рерайтера, кладёт результат в feed.xml.
+
+Отличия от v1 (ChadGPT):
+- провайдер ИИ: Groq (https://api.groq.com/openai/v1) — OpenAI-совместимый
+- 3 разные модели на 3 шага конвейера (оптимально по скорости/качеству)
+- структурированный JSON-вывод через response_format
+- ключ из переменной GROQ_API_KEY
+"""
+
+import json
+import os
+import re
+import sys
+import time
+from datetime import datetime, timezone
+
+import requests
+from feedgen.feed import FeedGenerator
+
+from common import (
+    POOL_FILE, PUBLISHED_FILE, OUTPUT_FEED, ITEM_LINK_PLACEHOLDER,
+    REQUEST_TIMEOUT,
+    load_json, save_json, get_full_text,
+)
+
+# ====== НАСТРОЙКИ GROQ ======
+GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
+
+# Модели на разные шаги конвейера:
+# - Куратор: нужна логика и понимание контекста, русский второстепенен
+# - Дубль-чек: нужен бинарный ответ, быстро и дёшево
+# - Рерайтер: нужен лучший русский — Qwen знает русский на отлично
+MODEL_CURATOR  = "llama-3.3-70b-versatile"     # Production, 280 t/s, качественная логика
+MODEL_DEDUP    = "llama-3.1-8b-instant"        # Production, 560 t/s, для бинарного ответа
+MODEL_REWRITER = "qwen/qwen3-32b"              # Preview, 400 t/s, отличный русский
+
+# Альтернативы если Qwen уберут из Preview (можно переключить):
+# MODEL_REWRITER = "openai/gpt-oss-120b"       # Production, 500 t/s, хороший русский
+# MODEL_REWRITER = "llama-3.3-70b-versatile"   # Production, средне-хороший русский
+
+REQUEST_PAUSE_SEC = 2          # пауза между запросами (Groq free: 30 RPM = 1 запрос / 2 сек)
+TEXT_FOR_REWRITER_LIMIT = 8000 # сколько знаков статьи отдаём ИИ
+MAX_ITEMS_IN_FEED = 10         # сколько последних постов держим в feed.xml
+# ============================
+
+FEED_TITLE = "Gaming Daily Pick"
+FEED_LINK = "https://www.resetera.com/forums/gaming-headlines.54/"
+FEED_DESCRIPTION = "Главная игровая новость — рерайт на русском"
+
+CURATOR_PROMPT = """Ты — главный редактор популярного канала о консольных играх и игровой индустрии. Перед тобой список заголовков свежих новостей за последние сутки. Выбери ОДИН — самый интересный для геймерской аудитории.
+
+Критерии выбора (в порядке приоритета):
+
+ПЕРВЫЙ ПРИОРИТЕТ — новости важные для российской аудитории:
+- Официальный выход игры в России (или подтверждение выхода), включая Steam, PS Store, Xbox
+- Новости о ценах и доступности консолей и игр для российского рынка
+- Новости о сервисах, доступных в России (Game Pass, PS Plus и т.д.)
+- Крупные анонсы игр от студий, у которых большая российская аудитория (GTA, FIFA/FC, Call of Duty, CS, Dota, Minecraft и т.п.)
+- Новости об уходе или возвращении игровых компаний на российский рынок
+
+ВТОРОЙ ПРИОРИТЕТ — важные мировые новости игровой индустрии:
+- Крупные анонсы новых игр от известных студий
+- Выход крупных игр (релизы AAA и крупных инди)
+- Заявления CEO крупных компаний (Sony, Microsoft, Nintendo, Valve, Take-Two)
+- Скандалы и конфликты с широким резонансом
+- Крупные цифры продаж или финансовые результаты
+- Новости о новых консолях и платформах
+
+ИЗБЕГАЙ:
+- Профсоюзных новостей и трудовых споров (не интересно широкой аудитории)
+- Косплея, фан-арта, фан-проектов
+- Технических подробностей для разработчиков
+- Новостей о конкретных стримерах или ютуберах (если только это не касается платформы в целом)
+
+Если все новости средние — всё равно выбери лучшую из имеющихся.
+
+Список заголовков:
+{titles}
+
+Верни ответ СТРОГО в формате JSON, без других слов и без markdown:
+{{"guid": "выбранный_guid", "reason": "одно предложение почему"}}"""
+
+
+REWRITER_PROMPT = """Ты — автор поста для русскоязычного канала о консольных играх и игровой индустрии. Создай ЗАГОЛОВОК и ТЕКСТ поста по строгим правилам.
+
+ПРАВИЛА ЯЗЫКА (это абсолютный приоритет):
+1. Только русский. Полностью БЕЗ англицизмов в тексте.
+2. Имена и фамилии людей — ПОЛНОСТЬЮ транслитерируй на русский (точно по японским/английским правилам произношения, не придумывай). Не "Мэтт Piscatella", а "Мэтт Пискателла". Не оставляй ни одной части имени на латинице.
+3. Названия КОМПАНИЙ, ИГР, ПЛАТФОРМ — оставляй на оригинальном языке: PlayStation, Nintendo Switch, Xbox Series X, Cyberpunk 2077, Take-Two, Rockstar, Circana, Bloomberg, Wall Street Journal.
+4. Англицизмы заменяй на русские эквиваленты:
+   - «казуальные / casual игроки» → «обычные игроки» или «игроки на досуге»
+   - «хардкорные» → «увлечённые» / «преданные»
+   - «релиз» → «выход» / «выпуск»
+   - «эксклюзив» → «эксклюзивная игра»
+   - «гейм-плей» → «игровой процесс»
+   - «контент» → «материалы» / «содержимое»
+   - «тайтл» → «игра»
+   - «ивент» → «событие»
+   - «фича» → «возможность» / «особенность»
+   - «коммьюнити» → «сообщество»
+   - «стартап» → «молодая компания»
+4.1 Не упоминай войну в реальном мире (не игровом)
+
+ПРАВИЛА ЖИВОГО РУССКОГО ЯЗЫКА (САМОЕ ВАЖНОЕ):
+5. Пиши как живой русскоязычный человек — НЕ как переводчик с английского.
+
+ЗАПРЕЩЁННЫЕ КОНСТРУКЦИИ (буквальный перевод с английского):
+- НЕЛЬЗЯ: "выше цена" → ПИШИ: "более высокая цена" или "подорожание"
+- НЕЛЬЗЯ: "взял пресс-брифинг / взял слово на брифинге" → ПИШИ: "выступил на брифинге" или "заявил журналистам"
+- НЕЛЬЗЯ: "адресовать проблему" → ПИШИ: "решать проблему"
+- НЕЛЬЗЯ: "имплементировать изменения" → ПИШИ: "внедрить изменения"
+- НЕЛЬЗЯ: "двигать иглу" → ПИШИ: "влиять на ситуацию"
+- НЕЛЬЗЯ: "домохозяйства с высоким доходом" → ПИШИ: "обеспеченные семьи"
+- НЕЛЬЗЯ: "является важным фактором" → ПИШИ: "это важно потому что"
+- НЕЛЬЗЯ: "осуществляет производство" → ПИШИ: "выпускает" / "делает"
+- НЕЛЬЗЯ: "в свете последних событий" → ПИШИ: "после того что случилось"
+- НЕЛЬЗЯ: "линейка программного обеспечения" → ПИШИ: "набор игр" / "игровая библиотека"
+- НЕЛЬЗЯ: "программное обеспечение" в контексте игр → ПИШИ: "игры"
+- НЕЛЬЗЯ: "комбайн PlayStation и Xbox" → ПИШИ: "консольный рынок"
+- НЕЛЬЗЯ: "данный" → ПИШИ: "этот"
+- НЕЛЬЗЯ: "порядка 100 единиц" → ПИШИ: "около 100 штук" / "примерно сотня"
+
+ПРАВИЛО ПЕРЕСТРОЙКИ ПРЕДЛОЖЕНИЙ:
+Если предложение при переводе с английского получается корявым — ПЕРЕФОРМУЛИРУЙ его полностью по-русски, не сохраняя оригинальную структуру.
+Например:
+- Английское: "Nintendo's president took the press briefing saying higher prices need software to justify them"
+- НЕЛЬЗЯ: "Президент Nintendo взял пресс-брифинг, сказав, что выше цены нужно программное обеспечение для их оправдания"
+- НАДО: "Президент Nintendo Сигэру Фурукава объяснил журналистам: чтобы оправдать рост цен, компания планирует выпустить больше игр"
+
+6. Используй естественные обороты: "получается, что", "выходит так", "оказывается", "судя по всему", "как выяснилось".
+6.1. Разговорный стиль — но не панибратский. Как объясняешь другу, но без жаргона.
+
+ПРАВИЛА ЛОГИКИ И СВЯЗНОСТИ (важно!):
+7. Текст должен быть ЛОГИЧЕСКИ СВЯЗНЫМ. Каждое следующее предложение должно вытекать из предыдущего или развивать его.
+8. Если приводишь факт — объясняй ЗАЧЕМ читателю это знать и КАК это связано с темой поста. Не просто "у PS5 продано 100 млн", а "PS5 продано 100 млн — это значит, что у GTA 6 уже огромная база покупателей, и её цена напрямую влияет на спрос".
+9. Если в исходной статье есть причинно-следственная связь между двумя темами — обязательно её сохрани и объясни читателю явно. Не оставляй "висящие" факты без связи с основной темой.
+10. Перед окончательной выдачей ПРОВЕРЬ САМ СЕБЯ:
+    - Понятна ли связь между предложениями?
+    - Все ли упомянутые факты работают на главную мысль поста?
+    - Нет ли резких смысловых разрывов?
+    - Если что-то нелогично — перепиши.
+
+ПРАВИЛА ФОРМЫ:
+11. Объём ТЕКСТА (без заголовка): от 500 до 800 знаков, целевой объём — около 650.
+12. Заголовок: краткий, до 100 знаков, на русском, цепляющий, без англицизмов. ЗАГОЛОВОК ОБЯЗАТЕЛЬНО ЗАКАНЧИВАЕТСЯ ТОЧКОЙ (если только это не вопрос или восклицание — тогда соответствующий знак).
+13. Стиль — разговорный, живой, как будто рассказываешь другу.
+14. Эмодзи — ровно 1 или 2 на пост (в тексте), к месту.
+15. НЕ добавляй: ссылки, хештеги, призывы подписаться.
+16. НЕ начинай текст со штампов: «Сегодня...», «На днях...», «Стало известно, что...», «Как сообщает...».
+17. Перед окончательной выдачей ПРОВЕРЬ ПУНКТУАЦИЮ: точка ставится сразу после слова без пробела ("слово." — правильно, "слово ." — неправильно). Все знаки препинания должны быть на своих местах.
+18. Если в исходнике мусор (меню, формы подписки, навигация) — игнорируй, бери только суть.
+
+СТРУКТУРА ТЕКСТА — ОБЯЗАТЕЛЬНО:
+19. Раздели текст на 2-3 абзаца (для текста статьи) с пустой строкой между ними (символ \\n\\n).
+19.1 Обязательно добавь в конец статьи после текста 4ый абзац, специально под предложение, точную фразу, с эмодзи: "📰 Дежурный по новостям: Пиксель."
+20. Каждый абзац — одна законченная мысль:
+- Первый абзац: суть события (что случилось и почему это важно)
+- Второй абзац: подробности и контекст
+- Третий абзац (если нужен): последствия или вывод для читателя
+21. НЕ пиши сплошным текстом без разбивки — это тяжело читать.
+
+САМОПРОВЕРКА ПЕРЕД ВЫДАЧЕЙ:
+- Есть ли в тексте буквальные кальки с английского (корявые конструкции, которые по-русски не говорят)? Если да — перефразируй.
+
+Текст исходной новости:
+{article_text}
+
+Верни ответ СТРОГО в формате JSON, без других слов, без markdown-обёрток:
+{{"title": "русский заголовок с точкой в конце.", "text": "русский текст поста с правильной пунктуацией"}}"""
+
+
+def call_groq(prompt, api_key, model, json_mode=False, temperature=0.7):
+    """
+    Делает запрос к Groq Chat Completions API. Возвращает текст ответа или None.
+
+    json_mode=True — включает гарантированный JSON-вывод (response_format).
+                     Использовать для куратора и рерайтера.
+                     Для дубль-чека (где нужен YES/NO) — оставлять False.
+    """
+    if not api_key:
+        print("✗ GROQ_API_KEY не задан!")
+        return None
+
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": temperature,
+    }
+    if json_mode:
+        payload["response_format"] = {"type": "json_object"}
+
+    try:
+        r = requests.post(GROQ_API_URL, headers=headers, json=payload, timeout=60)
+        if r.status_code != 200:
+            print(f"✗ HTTP {r.status_code}: {r.text[:300]}")
+            return None
+        data = r.json()
+        # Логируем расход токенов (Groq возвращает usage в каждом ответе)
+        usage = data.get("usage", {})
+        if usage:
+            print(f"  Токенов: вход {usage.get('prompt_tokens', 0)}, "
+                  f"выход {usage.get('completion_tokens', 0)}, "
+                  f"всего {usage.get('total_tokens', 0)}")
+        choices = data.get("choices", [])
+        if not choices:
+            print(f"✗ Нет choices в ответе: {data}")
+            return None
+        return choices[0].get("message", {}).get("content", "").strip()
+    except Exception as e:
+        print(f"✗ Запрос упал: {e}")
+        return None
+
+
+def curator_pick(pool_items, published_guids, api_key):
+    """Отдаёт куратору список заголовков, получает выбор."""
+    candidates = [it for it in pool_items if it["guid"] not in published_guids]
+    if not candidates:
+        print("В пуле нет неопубликованных кандидатов")
+        return None
+
+    print(f"\nКуратор выбирает из {len(candidates)} кандидатов (модель: {MODEL_CURATOR})...")
+    titles_text = "\n".join(
+        f"- guid: {it['guid']} | {it['title']}" for it in candidates
+    )
+    prompt = CURATOR_PROMPT.format(titles=titles_text)
+
+    answer = call_groq(prompt, api_key, model=MODEL_CURATOR, json_mode=True, temperature=0.4)
+    if not answer:
+        return None
+
+    # Чистим markdown-обёртки если ИИ их добавил (в json_mode не должно, но на всякий случай)
+    answer = re.sub(r"^```(?:json)?\s*", "", answer)
+    answer = re.sub(r"\s*```$", "", answer)
+    try:
+        decision = json.loads(answer, strict=False)
+        chosen_guid = decision.get("guid")
+        reason = decision.get("reason", "")
+    except Exception as e:
+        print(f"✗ Не смог распарсить ответ куратора: {e}")
+        print(f"  Ответ был: {answer[:300]}")
+        return None
+
+    chosen = next((it for it in candidates if it["guid"] == chosen_guid), None)
+    if not chosen:
+        print(f"✗ Куратор вернул guid {chosen_guid}, но его нет в кандидатах")
+        return None
+
+    print(f"\n✓ Выбрано: {chosen['title']}")
+    print(f"  Причина: {reason}")
+    return chosen
+
+
+def is_duplicate_story(chosen_title, published_titles, api_key):
+    """Проверяет через ИИ — не является ли выбранная статья дублём уже опубликованных."""
+    if not published_titles:
+        return False
+
+    titles_list = "\n".join(f"- {t}" for t in published_titles[-10:])
+    prompt = (
+        f"Перед тобой заголовок новой статьи и список уже опубликованных заголовков.\n\n"
+        f"Новая статья: {chosen_title}\n\n"
+        f"Уже опубликованные заголовки:\n{titles_list}\n\n"
+        f"Вопрос: рассказывает ли новая статья по сути об ТОМ ЖЕ событии что и одна из "
+        f"уже опубликованных? Учитывай смысл, а не точное совпадение слов.\n\n"
+        f"Верни СТРОГО одно слово: YES если это дубль, NO если это другая история."
+    )
+    print(f"  Дубль-чек (модель: {MODEL_DEDUP})...")
+    answer = call_groq(prompt, api_key, model=MODEL_DEDUP, json_mode=False, temperature=0.0)
+    if not answer:
+        return False
+    is_dup = answer.strip().upper().startswith("YES")
+    if is_dup:
+        print(f"  ⚠ Дубль обнаружен: '{chosen_title}' похожа на уже опубликованную")
+    return is_dup
+
+
+def rewrite_article(article_text, api_key):
+    """Просит ИИ сделать рерайт+перевод. Возвращает (title, text) или None."""
+    if len(article_text) > TEXT_FOR_REWRITER_LIMIT:
+        article_text = article_text[:TEXT_FOR_REWRITER_LIMIT]
+        last_dot = article_text.rfind(". ")
+        if last_dot > TEXT_FOR_REWRITER_LIMIT * 0.7:
+            article_text = article_text[:last_dot + 1]
+
+    print(f"\nРерайтер пишет пост на вход {len(article_text)} знаков (модель: {MODEL_REWRITER})...")
+    prompt = REWRITER_PROMPT.format(article_text=article_text)
+    answer = call_groq(prompt, api_key, model=MODEL_REWRITER, json_mode=True, temperature=0.7)
+    if not answer:
+        return None
+
+    # Чистим markdown-обёртки если ИИ их добавил
+    answer = re.sub(r"^```(?:json)?\s*", "", answer)
+    answer = re.sub(r"\s*```$", "", answer)
+    try:
+        data = json.loads(answer, strict=False)
+        title = data.get("title", "").strip()
+        text = data.get("text", "").strip()
+        if not title or not text:
+            print("✗ В ответе нет title или text")
+            print(f"  Ответ: {answer[:300]}")
+            return None
+        print(f"✓ Заголовок: {title}")
+        print(f"✓ Текст: {len(text)} знаков")
+        total = len(title) + len(text)
+        print(f"  Сумма title+text: {total} символов")
+        return title, text
+    except Exception as e:
+        print(f"✗ Не смог распарсить JSON рерайтера: {e}")
+        print(f"  Ответ был: {answer[:300]}")
+        return None
+
+
+def add_to_feed(item, post_text):
+    """Добавляет одну запись в feed.xml (или создаёт его)."""
+    # Загружаем существующие записи если есть
+    existing = []
+    if os.path.exists(OUTPUT_FEED):
+        try:
+            import feedparser
+            parsed = feedparser.parse(OUTPUT_FEED)
+            for e in parsed.entries:
+                pubdate = datetime.now(timezone.utc)
+                if e.get("published_parsed"):
+                    try:
+                        pubdate = datetime(*e.published_parsed[:6], tzinfo=timezone.utc)
+                    except Exception:
+                        pass
+                existing.append({
+                    "title": e.get("title", ""),
+                    "guid": e.get("id", e.get("link", "")),
+                    "pubdate": pubdate,
+                    "fulltext": e.get("summary", ""),
+                })
+        except Exception as e:
+            print(f"Не удалось прочитать старый feed: {e}")
+
+    # Новая запись
+    new_entry = {
+        "title": item["title"],
+        "guid": item["guid"],
+        "pubdate": datetime.now(timezone.utc),
+        "fulltext": post_text,
+    }
+
+    # Объединяем, сортируем по дате (свежие сверху), оставляем последние N
+    all_items = [new_entry] + [
+        e for e in existing if e["guid"] != new_entry["guid"]
+    ]
+    all_items.sort(key=lambda x: x["pubdate"], reverse=True)
+    all_items = all_items[:MAX_ITEMS_IN_FEED]
+
+    # Пишем feed.xml
+    fg = FeedGenerator()
+    fg.title(FEED_TITLE)
+    fg.link(href=FEED_LINK, rel="alternate")
+    fg.description(FEED_DESCRIPTION)
+    fg.language("ru")
+
+    for it in all_items:
+        fe = fg.add_entry(order='append')
+        fe.title(it["title"])
+        fe.link(href=ITEM_LINK_PLACEHOLDER)
+        fe.guid(it["guid"], permalink=False)
+        fe.pubDate(it["pubdate"])
+        fe.description(it["fulltext"])
+
+    fg.rss_file(OUTPUT_FEED, pretty=True)
+    print(f"\n✓ feed.xml обновлён ({len(all_items)} записей)")
+
+
+def main():
+    print(f"=== Публикатор v2 (Groq): {datetime.now(timezone.utc).isoformat()} ===")
+
+    api_key = os.environ.get("GROQ_API_KEY")
+    if not api_key:
+        print("✗ Переменная GROQ_API_KEY не задана. Прерываюсь.")
+        sys.exit(1)
+
+    pool = load_json(POOL_FILE, {"items": []})
+    pool_items = pool.get("items", [])
+    if not pool_items:
+        print("Пул пустой, нечего публиковать")
+        return
+
+    published = load_json(PUBLISHED_FILE, {"guids": [], "titles": []})
+    published_guids = set(published.get("guids", []))
+    published_titles = published.get("titles", [])
+
+    max_attempts = 5  # Защита от бесконечного цикла
+    attempt = 0
+    success = False
+
+    # Запускаем цикл поиска подходящей новости
+    while attempt < max_attempts and not success:
+        attempt += 1
+        print(f"\n--- Итерация {attempt} из {max_attempts} ---")
+
+        # 1. Куратор выбирает статью
+        chosen = curator_pick(pool_items, published_guids, api_key)
+        if not chosen:
+            print("Куратор не смог выбрать (или пул исчерпан). Завершаю поиск.")
+            break
+
+        # пауза между запросами (бережём rate limit)
+        time.sleep(REQUEST_PAUSE_SEC)
+
+        # 1b. Проверяем на смысловой дубль
+        if is_duplicate_story(chosen["title"], published_titles, api_key):
+            print("Выбранная статья — смысловой дубль. Помечаю GUID и ищу следующую.")
+            published_guids.add(chosen["guid"])
+            save_json(PUBLISHED_FILE, {
+                "guids": list(published_guids)[-100:],
+                "titles": published_titles
+            })
+            time.sleep(REQUEST_PAUSE_SEC)
+            continue
+
+        time.sleep(REQUEST_PAUSE_SEC)
+
+        # 2. Скачиваем полный текст выбранной
+        print(f"\nСкачиваю полный текст: {chosen['original_url']}")
+        fulltext, _ = get_full_text(chosen["original_url"])
+        if not fulltext:
+            print("✗ Не удалось скачать текст. Помечу как опубликованную и ищу дальше.")
+            published_guids.add(chosen["guid"])
+            save_json(PUBLISHED_FILE, {
+                "guids": list(published_guids)[-100:],
+                "titles": published_titles
+            })
+            continue
+
+        # 3. Рерайтер пишет пост на русском
+        rewrite_result = rewrite_article(fulltext, api_key)
+        if not rewrite_result:
+            print("✗ Рерайт не получился. Помечу GUID и ищу дальше.")
+            published_guids.add(chosen["guid"])
+            save_json(PUBLISHED_FILE, {
+                "guids": list(published_guids)[-100:],
+                "titles": published_titles
+            })
+            time.sleep(REQUEST_PAUSE_SEC)
+            continue
+
+        # 4. Добавляем в feed.xml
+        post_title, post_text = rewrite_result
+        chosen_with_ru_title = dict(chosen)
+        chosen_with_ru_title["title"] = post_title
+        add_to_feed(chosen_with_ru_title, post_text)
+
+        # 5. Помечаем как опубликованную — сохраняем GUID и заголовок
+        published_guids.add(chosen["guid"])
+        published_titles.append(post_title)
+        save_json(PUBLISHED_FILE, {
+            "guids": list(published_guids)[-100:],
+            "titles": published_titles[-30:]   # храним последние 30 заголовков
+        })
+
+        success = True
+        print("\n=== Публикатор v2 успешно завершил работу ===")
+
+    if not success:
+        print("\n✗ Не удалось опубликовать статью за отведённое число попыток.")
+
+
+if __name__ == "__main__":
+    main()
