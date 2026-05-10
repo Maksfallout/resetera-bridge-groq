@@ -454,7 +454,7 @@ def rewrite_article(article_text, api_key):
             article_text = article_text[:last_dot + 1]
  
     print(f"\nРерайтер пишет пост на вход {len(article_text)} знаков (модель: {MODEL_REWRITER})...")
-    prompt = REWRITER_PROMPT.format(article_text=article_text, max_chars=MAX_TOTAL_CHARS)
+    prompt = REWRITER_PROMPT.format(article_text=article_text, max_chars=MAX_AI_CHARS)
     answer = call_groq(prompt, api_key, model=MODEL_REWRITER, json_mode=True, temperature=0.6)
     if not answer:
         return None
