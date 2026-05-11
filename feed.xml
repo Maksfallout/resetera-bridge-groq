@@ -7,7 +7,20 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Mon, 11 May 2026 14:14:30 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2026 15:10:48 +0000</lastBuildDate>
+    <item>
+      <title>Xbox и Discord объединяются: Nitro получит ограниченный Game Pass.</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>Xbox и Discord объявили о сотрудничестве. Подписчики Discord Nitro получат урезанную версию Xbox Game Pass. В неё войдут более 50 игр для Xbox и ПК, а также 10 часов облачного гейминга в месяц. Цена подписки Nitro останется прежней.
+
+Discord Nitro — премиум-подписка с функциями вроде кастомных эмодзи и расширенных возможностей. Платформа уже интегрирована в экосистемы PlayStation и Xbox. Ранее Discord планировала проверку возраста, но отложила это на 2026 год.
+
+Xbox Game Pass также переживает изменения. В 2026 году подписка подешевеет, но Call of Duty больше не будут добавлять на дни релиза. Новый руководитель Аша Шарма признала, что цена стала слишком высока для игроков.
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1516606</guid>
+      <pubDate>Mon, 11 May 2026 15:10:48 +0000</pubDate>
+    </item>
     <item>
       <title>Microsoft и Discord запускают совместный проект.</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -108,17 +121,6 @@ Drecom подчеркнула, что сохраняет международн�
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1515997</guid>
       <pubDate>Mon, 11 May 2026 06:10:34 +0000</pubDate>
-    </item>
-    <item>
-      <title>Slay the Spire 2: Босс Act 3 заменён на Aeonglass, появился Bestiary.</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>В бета-версии Slay the Spire 2 босс третьего акта Doormaker заменён на нового противника Aeonglass. Разработчики признали, что Doormaker превышал сложность, характерную для игрового процесса. Вместо него добавлен Bestiary — каталог, где будут отображаться анимации и данные всех врагов.
-
-Команда Mega Crit сократила частоту обновлений с еженедельной до двухразовой — это позволяет более тщательно тестировать изменения. В патче также отредактированы балансы карт, добавлены новые реликвии и исправлены ошибки. Bestiary пока остаётся черновиком, но в будущем станет полноценным элементом игры.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1515883</guid>
-      <pubDate>Mon, 11 May 2026 05:10:34 +0000</pubDate>
     </item>
   </channel>
 </rss>
