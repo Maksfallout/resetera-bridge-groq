@@ -7,7 +7,18 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Mon, 11 May 2026 12:10:43 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2026 13:10:39 +0000</lastBuildDate>
+    <item>
+      <title>Dragon Quest XII: В огне судьбы расскажут обо всём 27 мая.</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>Следующая часть культовой JRPG-сериала Dragon Quest XII: The Flames of Fate получит двигатель Unreal Engine 5. Создатель серии Юги Хори подтвердил, что 27 мая состоится стрим, посвящённый 40-летию франшизы. В рамках трансляции объявят подробности новой игры и представят дополнительные материалы.
+
+Dragon Quest XI: Echoes of an Elusive Age и ремейки первых трёх частей, а также Dragon Quest VII Reimagined укрепили популярность серии. Теперь ожидания связаны с обновлённой системой командных боёв, которая не менялась с первых игр. Разработчики обещают сохранить дух франшизы, добавив новые элементы.
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1516303</guid>
+      <pubDate>Mon, 11 May 2026 13:10:39 +0000</pubDate>
+    </item>
     <item>
       <title>Lego Batman: Legacy of the Dark Knight перед выходом столкнулся с проблемами.</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -108,17 +119,6 @@ Drecom подчеркнула, что сохраняет международн�
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1516174</guid>
       <pubDate>Mon, 11 May 2026 04:10:37 +0000</pubDate>
-    </item>
-    <item>
-      <title>ИИ в Dragon Quest: как персонажи станут настоящими друзьями.</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>Юджи Хории, создатель серии Dragon Quest, считает, что достижения в области искусственного интеллекта могут усилить связь между игроками и их партнёрами в играх. По его словам, ИИ — это не просто удобный инструмент, а потенциальный друг для каждого игрока. В рамках конференции Google Cloud Next 2026 Хории подчеркнул, что технологии позволяют персонажам отвечать на вопросы, чтобы сделать их поведение ещё более реалистичным.
-
-Разработчик также упомянул совместный проект Square Enix и Google — Oshaberi Slimey (Chatty Slimey), ИИ-чат-бота на базе Gemini, который интегрируется в Dragon Quest X. Хории надеется, что подобные вспомогательные персонажи на основе ИИ появятся не только в Dragon Quest, но и в других сериях.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1515940</guid>
-      <pubDate>Mon, 11 May 2026 03:10:36 +0000</pubDate>
     </item>
   </channel>
 </rss>
