@@ -7,7 +7,18 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Mon, 11 May 2026 08:10:45 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2026 09:10:43 +0000</lastBuildDate>
+    <item>
+      <title>CAPCOM рассматривает ремейк Devil May Cry 1 и другие проекты.</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>Утечка информации о планах CAPCOM раскрыла возможный ремейк первой части Devil May Cry и дальнейшие шаги с франшизой Resident Evil. Источник, ранее подтвердивший участие Ады Вонг в DLC к Resident Evil Requiem, теперь связывает с утверждением о разработке экшн-проекта, основанного на оригинальной части 2001 года.
+
+Согласно данным, компания планирует четыре крупных ремейка в серии Resident Evil: Zero, первая часть, Code Veronica и следующий эпизод (RE10). Ремейк RE10, возможно, получит сюжет с Клэр Редфилд как главной героиней, что связано с предстоящим обновлением Code Veronica. Эти проекты используют новый REX-движок, отличный от RE Engine.
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1516228</guid>
+      <pubDate>Mon, 11 May 2026 09:10:43 +0000</pubDate>
+    </item>
     <item>
       <title>Atari получает права на первые пять игр Wizardry.</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -110,17 +121,6 @@ Dishonored 2 — это шедевр жанра скрытности от сту
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1515979</guid>
       <pubDate>Mon, 11 May 2026 00:10:37 +0000</pubDate>
-    </item>
-    <item>
-      <title>Netflix, возможно, нашёл путь к играм.</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>Netflix запустил новые игры для ТВ, которые оказались удачными. Они легко привлекают внимание: в семье все собрались у экрана, играя в Boggle, используя смартфоны вместо контроллеров. Это первые проекты, которые органично вписываются в экосистему сервиса, в отличие от предыдущих опытов.
-
-Пять лет назад компания начала тестировать мобильные игры, но успеха не добилась. Закупали студии, запускали проекты, но пользователи не проявляли интереса. Стратегия часто менялась: в 2023 году Ален Таскон обозначил четыре направления, но уже в 2025 два ключевых проекта — «Сквид Гейм: Безумное приключение» и «Spirit Crossing» — закрылись. Игры оставались вне основного приложения, что снижало их популярность.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1515823</guid>
-      <pubDate>Sun, 10 May 2026 23:10:35 +0000</pubDate>
     </item>
   </channel>
 </rss>
