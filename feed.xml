@@ -7,7 +7,18 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Mon, 11 May 2026 13:10:39 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2026 14:14:30 +0000</lastBuildDate>
+    <item>
+      <title>Microsoft и Discord запускают совместный проект.</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>Microsoft и Discord объявили о партнёрстве, которое добавит Xbox Game Pass в Discord Nitro. Подписка Discord Nitro включит специальную версию Xbox Game Pass с более чем 50 играми для ПК и консолей. Среди предложенных игр — Fallout 4, Stardew Valley, DayZ и другие.
+
+Пользователи Discord Nitro получат скидки на оборудование от Logitech G, SteelSeries и KontrolFreek. Ежемесячно подписчики получат 250 Orbs и бонусные баллы за выполнение заданий. Партия также предусматривает расширение возможностей для всех участников.
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1516519</guid>
+      <pubDate>Mon, 11 May 2026 14:14:30 +0000</pubDate>
+    </item>
     <item>
       <title>Dragon Quest XII: В огне судьбы расскажут обо всём 27 мая.</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -108,17 +119,6 @@ Drecom подчеркнула, что сохраняет международн�
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1515883</guid>
       <pubDate>Mon, 11 May 2026 05:10:34 +0000</pubDate>
-    </item>
-    <item>
-      <title>Diablo IV: Lord of Hatred — крупнейшее обновление с момента выхода игры.</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>Разработчики Diablo IV называют новое расширение не просто исправлением, а эволюцией. В Lord of Hatred добавлены два новых класса, возвращён популярный Паладин и представлен Волхв, а действие перенесено в древнюю амазонскую землю Сковос. Это обновление затрагивает все аспекты игры: от игрового процесса до сюжета.
-
-Создание города Темис, центральной локации расширения, стало примером баланса между сюжетной частью и эндгеймом. Разработчики отказались от традиционных подходов, чтобы сделать город удобным как для повседневных задач, так и для сложных активностей. Впервые игроки получили возможность влиять на развитие сюжета и стратегию борьбы с демонами.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1516174</guid>
-      <pubDate>Mon, 11 May 2026 04:10:37 +0000</pubDate>
     </item>
   </channel>
 </rss>
