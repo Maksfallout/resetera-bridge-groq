@@ -7,7 +7,18 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Mon, 11 May 2026 16:10:45 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2026 17:10:40 +0000</lastBuildDate>
+    <item>
+      <title>Forza Horizon 6 попала в утечку через Steam</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>Недавно стало известно, что Forza Horizon 6 утекла в сеть за девять дней до официального выпуска. Гигабайты нешифрованных файлов игры появились на платформе SteamDB, а затем — на пиратских сайтах. Утечка произошла из-за раннего запуска предзагрузки, которая обычно шифрует файлы. Microsoft уже начало действия по устранению утечки, включая удаление обсуждений на Reddit.
+
+Эксперты считают, что утечка может негативно повлиять на бизнес Microsoft и студию Playground. Игра рассчитана на PC, Xbox и подписчиков Game Pass, при этом Steam станет важным драйвером продаж. Сейчас Forza Horizon 6 — вторая по популярности игра на платформе Valve. Окончательный релиз запланирован на 19 мая, а ранний доступ начнётся 15 мая.
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1516312</guid>
+      <pubDate>Mon, 11 May 2026 17:10:40 +0000</pubDate>
+    </item>
     <item>
       <title>Discord запускает программу Nitro Rewards для подписчиков.</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -110,17 +121,6 @@ Drecom подчеркнула, что сохраняет международн�
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1516219</guid>
       <pubDate>Mon, 11 May 2026 08:10:45 +0000</pubDate>
-    </item>
-    <item>
-      <title>Обновление Overwatch Season 2 выйдет 12 мая</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>Обновление второй половины сезона Overwatch появится 12 мая. Запуск обновления состоится одновременно на всех платформах. Для разных регионов время старта следующее: 11 утра по Тихоокеанскому времени, 13:00 по Центральному, 14:00 по Восточному, 18:00 по UTC и 19:00 по BST. Blizzard обычно придерживается этого графика при крупных обновлениях.
-
-В обновлении ожидается балансировочное исправление, которое повлияет на текущий игровой мета. Ана получит новую косметику редкости Mythic. Возможно, появится годовщечное событие, но детали пока скрыты. Подробности станут известны после выхода обновления.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1515973</guid>
-      <pubDate>Mon, 11 May 2026 07:10:43 +0000</pubDate>
     </item>
   </channel>
 </rss>
