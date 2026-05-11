@@ -7,7 +7,18 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Mon, 11 May 2026 18:10:55 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2026 19:10:41 +0000</lastBuildDate>
+    <item>
+      <title>Новый сезон испытаний в ARC Raiders: как пройти задания?</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>В игре ARC Raiders стартовал новый сезон испытаний после обновления Riven Tides. Пять новых заданий с разными целями и наградами, включая схемы, ждут игроков. Каждое задание требует 4000 очков для получения трёх звёзд. Награды зависят от успешного выполнения.
+
+Среди задач — уничтожение врагов на пляже (только в Riven Tides), бой с испарителями и светляками. Для последних лучше выбрать карту с высокой плотностью их спавнов. Поиск кэшей пиратов максимально прост, особенно в условиях урагана. Лучшие карты — Dam Battlegrounds и Buried City.
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1516279</guid>
+      <pubDate>Mon, 11 May 2026 19:10:41 +0000</pubDate>
+    </item>
     <item>
       <title>Super Alloy Crush: Вдохновленная Mega Man X, но с уникальным стилем.</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -110,17 +121,6 @@ Dragon Quest XI: Echoes of an Elusive Age и ремейки первых трё�
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1516288</guid>
       <pubDate>Mon, 11 May 2026 10:10:38 +0000</pubDate>
-    </item>
-    <item>
-      <title>CAPCOM рассматривает ремейк Devil May Cry 1 и другие проекты.</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>Утечка информации о планах CAPCOM раскрыла возможный ремейк первой части Devil May Cry и дальнейшие шаги с франшизой Resident Evil. Источник, ранее подтвердивший участие Ады Вонг в DLC к Resident Evil Requiem, теперь связывает с утверждением о разработке экшн-проекта, основанного на оригинальной части 2001 года.
-
-Согласно данным, компания планирует четыре крупных ремейка в серии Resident Evil: Zero, первая часть, Code Veronica и следующий эпизод (RE10). Ремейк RE10, возможно, получит сюжет с Клэр Редфилд как главной героиней, что связано с предстоящим обновлением Code Veronica. Эти проекты используют новый REX-движок, отличный от RE Engine.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1516228</guid>
-      <pubDate>Mon, 11 May 2026 09:10:43 +0000</pubDate>
     </item>
   </channel>
 </rss>
