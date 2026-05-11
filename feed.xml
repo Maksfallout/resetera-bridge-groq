@@ -7,7 +7,18 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Mon, 11 May 2026 21:10:42 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2026 22:10:38 +0000</lastBuildDate>
+    <item>
+      <title>Следующая игра Stellar Blade может уйти от эксклюзива PlayStation.</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>Разработчик и издатель Shift Up заявили о планах самопубликации следующей части Stellar Blade. В отчёте за первый квартал 2026 года компания отметила, что разработка игры идёт удачно и они нацелены на глобальную аудиторию. Руководство обещает стратегию продвижения, учитывающую уникальность IP, и ожидает роста продаж благодаря проверенной фанбазе первой части.
+
+Отчёт не уточняет, сохранится ли эксклюзивность игры на PlayStation, но успех первой части на ПК и интерес Shift Up к Xbox и Switch 2 намекают на возможное расширение платформ. Детали следующей игры обещают раскрыть в этом финансовом году. Также компания подчеркнула развитие первого штудии Unbound Шиндзи Миками, которую недавно приобрели.
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1516630</guid>
+      <pubDate>Mon, 11 May 2026 22:10:38 +0000</pubDate>
+    </item>
     <item>
       <title>Падение акций Nintendo: проблемы с ценой и отсутствие игр.</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -108,17 +119,6 @@ Dragon Quest XI: Echoes of an Elusive Age и ремейки первых трё�
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1516303</guid>
       <pubDate>Mon, 11 May 2026 13:10:39 +0000</pubDate>
-    </item>
-    <item>
-      <title>Lego Batman: Legacy of the Dark Knight перед выходом столкнулся с проблемами.</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>Новая игра по вселенной Lego Batman вызвала интерес у игроков, но перед выходом разработчики столкнулись с неожиданными сложностями. В преддверии запуска стало известно, что коды предзаказа для Xbox Series X/S в магазине Walmart активировались досрочно, что позволило некоторым пользователям получить полную версию игры. Кроме того, издатель внедрил систему защиты Denuvo DRM в ПК-версию, что вызвало обеспокоенность среди геймеров.
-
-Пользователи сообщили, что досрочный доступ через Walmart был ограничен только стандартной версией игры. После активации разработчики внезапно отключили доступ, но некоторые смогли сохранить игру, отключив интернет.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1516309</guid>
-      <pubDate>Mon, 11 May 2026 12:10:43 +0000</pubDate>
     </item>
   </channel>
 </rss>
