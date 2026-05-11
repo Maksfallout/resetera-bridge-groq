@@ -7,7 +7,18 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Mon, 11 May 2026 07:10:43 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2026 08:10:45 +0000</lastBuildDate>
+    <item>
+      <title>Atari получает права на первые пять игр Wizardry.</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>Компания Atari приобрела полные эксклюзивные права на первые пять игр серии Wizardry, включая связанные с ними авторские права. Ранее эти права принадлежали оригинальному правообладателю. Игры 6, 7 и 8 серии находятся у японского издателя Drecom, а также разработаны в отдельной вселенной.
+
+Drecom подчеркнула, что сохраняет международные товарные знаки и управление брендом Wizardry. Компания не планирует продавать права на франшизу. Atari намерена расширять распространение игр через ремастеры, коллекции и новые релизы. Планируется выпуск настольных и карточных игр, книг, комиксов, а также проектов для телевидения и кино.
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1516219</guid>
+      <pubDate>Mon, 11 May 2026 08:10:45 +0000</pubDate>
+    </item>
     <item>
       <title>Обновление Overwatch Season 2 выйдет 12 мая</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -110,17 +121,6 @@ Dishonored 2 — это шедевр жанра скрытности от сту
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1515823</guid>
       <pubDate>Sun, 10 May 2026 23:10:35 +0000</pubDate>
-    </item>
-    <item>
-      <title>В Lego Batman внедрили Denuvo: игроки обеспокоены.</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>Разработчики TT Games и издатель Warner Bros. Games внедрили в Lego Batman: Legacy of the Dark Knight технологию Denuvo для борьбы с пиратством. Софтвер добавили за несколько недель до запуска игры 22 мая 2026 года. На форуме Reddit пользователи обнаружили, что на странице игры в Steam появился индикатор стороннего DRM. Некоторые игроки уже заявили, что отказываются приобретать цифровую версию.
-
-Сообщество критикует Denuvo за негативное влияние на производительность. Требования к ПК для Lego Batman: Legacy of the Dark Knight также вызвали раздражение: игра требует 16 ГБ оперативной памяти и включения генерации кадров для достижения 30 fps.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1516000</guid>
-      <pubDate>Sun, 10 May 2026 22:10:34 +0000</pubDate>
     </item>
   </channel>
 </rss>
