@@ -7,7 +7,18 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Tue, 12 May 2026 21:10:38 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2026 22:10:37 +0000</lastBuildDate>
+    <item>
+      <title>Elden Ring: Tarnished Edition может выйти 10 июля. Что известно?</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>Разработчики из FromSoftware и Nintendo задержали выпуск специальной версии Elden Ring для Nintendo Switch 2 с 2025 на 2026 год. Причиной стало необходимость оптимизации игры под консоль. Канадский ретейлер PNP Games указал дату 10 июля как возможный день выхода, но подтверждение пока отсутствует.
+
+По данным Digital Foundry, основная проблема заключается в высокой нагрузке на процессор, что приводит к падению частоты кадров. На Switch 2 частота не превышает 30 кадров в секунду, а в портативном режиме — даже ниже. Аналогичные проблемы наблюдались в PC-версии игры. Для сравнения, Cyberpunk 2077 на Switch 2 работает стабильно.
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1517377</guid>
+      <pubDate>Tue, 12 May 2026 22:10:37 +0000</pubDate>
+    </item>
     <item>
       <title>Xbox и Discord запускают новую версию Game Pass.</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -108,17 +119,6 @@
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1516609</guid>
       <pubDate>Tue, 12 May 2026 12:10:36 +0000</pubDate>
-    </item>
-    <item>
-      <title>Rocket League анонсировал новый набор для поддержки эспорта.</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>Игровая студия Psyonix и Epic Games представили бандл, часть дохода от продажи которого пойдёт на финансирование турнира RLCS в Париже. Набор, доступный с 19 по 30 мая, стоит 1000 игровых кредитов (около $9,99). Всё прибыль после налогов разделится между игроками и командами.
-
-50% дохода пойдёт на индивидуальные награды по трём категориям: «Стрикер» (самый результативный игрок), «Плеймейкер» (самый ассистент) и «Сейвер» (лучший защитник). Оставшиеся 50% распределены между 16 команд — победитель получит 9,33%, а последние места — от 4,2% до 6%.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1516873</guid>
-      <pubDate>Tue, 12 May 2026 11:10:38 +0000</pubDate>
     </item>
   </channel>
 </rss>
