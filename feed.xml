@@ -7,7 +7,18 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Tue, 12 May 2026 07:10:39 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2026 08:10:51 +0000</lastBuildDate>
+    <item>
+      <title>Подписчики Discord Nitro теперь получают Xbox Game Pass</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>Microsoft и Discord объявили о партнёрстве, которое даёт владельцам подписки Discord Nitro доступ к новой версии Xbox Game Pass. Пакет включает библиотеку из более чем 50 игр для консолей и ПК, а также 10 часов облачного гейминга в месяц. Стоимость подписки Discord Nitro осталась без изменений — 10 долларов в месяц или 100 долларов за год.
+
+Среди игр, доступных в новом пакете, — Fallout 4, Stardew Valley, DayZ, Deep Rock Galactic, Grounded и Overcooked 2. Компании заявили, что сотрудничают для расширения возможностей Game Pass и улучшения взаимодействия между сообществами Xbox и Discord. Ранее подписчики Game Pass Ultimate получали месяц Discord Nitro бесплатно.
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1516465</guid>
+      <pubDate>Tue, 12 May 2026 08:10:51 +0000</pubDate>
+    </item>
     <item>
       <title>Discord представляет новые привилегии для Nitro-подписчиков.</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -108,17 +119,6 @@ Game Pass Starter Edition включает около 50 игр от Xbox, вк�
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1516438</guid>
       <pubDate>Mon, 11 May 2026 21:10:42 +0000</pubDate>
-    </item>
-    <item>
-      <title>Использование ИИ в разработке продолжения Lies of P вызывает вопросы у фанатов.</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>Компания Round8 Studio, разработчик Lies of P, разместила вакансию на позицию «создателя ИИ». Кандидат должен будет применять генеративные технологии для ускорения процесса создания арта и повышения визуального качества игр. Это вызвало обеспокоенность у сообщества, так как ранее похожие шаги в направлении автоматизации арт-процессов сопровождались критикой.
-
-Аналогичный случай произошёл с Larian Studios, когда студия использовала ИИ для создания концепт-арта в Divinity. Аналогично, вакансия Round8 включает обязанности по созданию концептов персонажей и фонов, а также текстурированию и моделированию с помощью ИИ.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1516939</guid>
-      <pubDate>Mon, 11 May 2026 20:10:34 +0000</pubDate>
     </item>
   </channel>
 </rss>
