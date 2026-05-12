@@ -7,7 +7,18 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Tue, 12 May 2026 16:10:37 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2026 17:10:41 +0000</lastBuildDate>
+    <item>
+      <title>Discord и Xbox объединяются: новая версия подписки</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>Discord и Xbox подтвердили, что подписка Discord Nitro будет включать начальный уровень Xbox Game Pass. Новый пакет предлагает более 50 игр и 10 часов облачного геймплея, но не включает многопользовательский режим для консольных игроков. Подписчики Nitro на уровне $9.99 получат эту версию бесплатно, без увеличения стоимости.
+
+Новый уровень станет первым в истории Xbox Game Pass, где облачное геймплей ограничено по времени. Также он не включает онлайн-многопользовательский режим для владельцев консолей. Игроки, желающие сохранить Discord Nitro и отказаться от основной подписки Game Pass, смогут использовать только Xbox PC-приложение для доступа к онлайн-играм.
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1516837</guid>
+      <pubDate>Tue, 12 May 2026 17:10:41 +0000</pubDate>
+    </item>
     <item>
       <title>Whiskerwood добавит морские бои и защиту островов. Очередной обновление выйдет через пару месяцев.</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -108,19 +119,6 @@
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1516465</guid>
       <pubDate>Tue, 12 May 2026 08:10:51 +0000</pubDate>
-    </item>
-    <item>
-      <title>Discord представляет новые привилегии для Nitro-подписчиков.</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>Discord добавил в сервис Nitro новую функцию — Nitro Rewards. Подписчики получат доступ к Xbox Game Pass Starter, скидки на игровые устройства и дополнительные бонусы. Программа охватывает не только игры, но и аксессуары от SteelSeries, Logitech и KontrolFreek.
-
-Нововведения включают облачное гейминг-облако с 10 часами в месяц, возможность заработать до 25 долларов в магазине Xbox и 250 игровых жетонов ежемесячно. Представитель Discord Лю Чжан подчеркнул, что программа отражает реальную жизнь геймеров за пределами платформы.
-
-Расширение Nitro Rewards продолжится. Компания планирует добавить новые партнёров и преимущества, чтобы сделать подписку обязательной для игрового сообщества.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1516471</guid>
-      <pubDate>Tue, 12 May 2026 07:10:39 +0000</pubDate>
     </item>
   </channel>
 </rss>
