@@ -7,7 +7,16 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Tue, 12 May 2026 02:10:35 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2026 03:10:46 +0000</lastBuildDate>
+    <item>
+      <title>10-летие Uncharted 4: что было, а что стало</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>10 мая исполнилось десять лет с выхода Uncharted 4: Азарт воров. Игра завершила сагу Нейта Дрейка, но разработка шла не без потрясений. После ухода креативного директора Эми Хеннинг в 2014 году студия Naughty Dog внесла значительные изменения в проект. Ютубер Thekempy собрал архивные материалы, демонстрирующие, как первоначальный вариант игры отличался от итоговой версии. Видео включает утраченных персонажей, таких как Виктор «Салли» Салливан и пират Генри Эвери, а также ранние съёмки с актёрами, которых не оказалось в финальной игре.
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1516876</guid>
+      <pubDate>Tue, 12 May 2026 03:10:46 +0000</pubDate>
+    </item>
     <item>
       <title>Связь Gears of War и WWE может указывать на сентябрьский выход E-Day.</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -106,19 +115,6 @@ Xbox Game Pass Starter Edition включает 10 часов облачного
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1516516</guid>
       <pubDate>Mon, 11 May 2026 16:10:45 +0000</pubDate>
-    </item>
-    <item>
-      <title>Xbox и Discord объединяются: Nitro получит ограниченный Game Pass.</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>Xbox и Discord объявили о сотрудничестве. Подписчики Discord Nitro получат урезанную версию Xbox Game Pass. В неё войдут более 50 игр для Xbox и ПК, а также 10 часов облачного гейминга в месяц. Цена подписки Nitro останется прежней.
-
-Discord Nitro — премиум-подписка с функциями вроде кастомных эмодзи и расширенных возможностей. Платформа уже интегрирована в экосистемы PlayStation и Xbox. Ранее Discord планировала проверку возраста, но отложила это на 2026 год.
-
-Xbox Game Pass также переживает изменения. В 2026 году подписка подешевеет, но Call of Duty больше не будут добавлять на дни релиза. Новый руководитель Аша Шарма признала, что цена стала слишком высока для игроков.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1516606</guid>
-      <pubDate>Mon, 11 May 2026 15:10:48 +0000</pubDate>
     </item>
   </channel>
 </rss>
