@@ -7,7 +7,18 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Tue, 12 May 2026 15:10:39 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2026 16:10:37 +0000</lastBuildDate>
+    <item>
+      <title>Whiskerwood добавит морские бои и защиту островов. Очередной обновление выйдет через пару месяцев.</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>Разработчики Whiskerwood анонсировали, что в ближайшем обновлении появятся полные морские бои, защита островов башнями и крепостями, а также возможность строить корабли. Ранее игроки могли лишь пассивно смотреть на прибытие кораблей с котами, пиратами или мышами — теперь они получат инструменты для активных действий.
+
+Команда Minakata Dynamics перешла с двойной недели обновлений на более долгий цикл, объяснив это необходимостью крупного масштабного апдейта. В рамках последнего обновления 25 изменён процесс строительства: вместо случайных мышей теперь за работу отвечают нанятые бригады, эффективность которых зависит от политики и сверхурочных часов.
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1517389</guid>
+      <pubDate>Tue, 12 May 2026 16:10:37 +0000</pubDate>
+    </item>
     <item>
       <title>Nintendo анонсировала новый набор для Switch 2.</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -110,17 +121,6 @@
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1516471</guid>
       <pubDate>Tue, 12 May 2026 07:10:39 +0000</pubDate>
-    </item>
-    <item>
-      <title>Discord расширяет подписку Nitro новыми преимуществами.</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>Сервис Discord усилил программу подписки Nitro, добавив скидки на игровое оборудование и доступ к Game Pass Starter Edition. Пользователи получат возможность играть в игры вроде Stardew Valley и Fallout 4 бесплатно, а также использовать облачное стриминговое оборудование.
-
-Game Pass Starter Edition включает около 50 игр от Xbox, включая эксклюзивы и независимые проекты. Подписчики Nitro смогут получить скидки до 30% на Logitech и 15% на SteelSeries. Руководитель Discord Лю Чжан подчеркнула, что партнёры программы выбираются строго по критериям, важным для игроков.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1516513</guid>
-      <pubDate>Tue, 12 May 2026 06:10:40 +0000</pubDate>
     </item>
   </channel>
 </rss>
