@@ -7,7 +7,20 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Tue, 12 May 2026 06:10:40 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2026 07:10:39 +0000</lastBuildDate>
+    <item>
+      <title>Discord представляет новые привилегии для Nitro-подписчиков.</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>Discord добавил в сервис Nitro новую функцию — Nitro Rewards. Подписчики получат доступ к Xbox Game Pass Starter, скидки на игровые устройства и дополнительные бонусы. Программа охватывает не только игры, но и аксессуары от SteelSeries, Logitech и KontrolFreek.
+
+Нововведения включают облачное гейминг-облако с 10 часами в месяц, возможность заработать до 25 долларов в магазине Xbox и 250 игровых жетонов ежемесячно. Представитель Discord Лю Чжан подчеркнул, что программа отражает реальную жизнь геймеров за пределами платформы.
+
+Расширение Nitro Rewards продолжится. Компания планирует добавить новые партнёров и преимущества, чтобы сделать подписку обязательной для игрового сообщества.
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1516471</guid>
+      <pubDate>Tue, 12 May 2026 07:10:39 +0000</pubDate>
+    </item>
     <item>
       <title>Discord расширяет подписку Nitro новыми преимуществами.</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -106,17 +119,6 @@ Game Pass Starter Edition включает около 50 игр от Xbox, вк�
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1516939</guid>
       <pubDate>Mon, 11 May 2026 20:10:34 +0000</pubDate>
-    </item>
-    <item>
-      <title>Новый сезон испытаний в ARC Raiders: как пройти задания?</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>В игре ARC Raiders стартовал новый сезон испытаний после обновления Riven Tides. Пять новых заданий с разными целями и наградами, включая схемы, ждут игроков. Каждое задание требует 4000 очков для получения трёх звёзд. Награды зависят от успешного выполнения.
-
-Среди задач — уничтожение врагов на пляже (только в Riven Tides), бой с испарителями и светляками. Для последних лучше выбрать карту с высокой плотностью их спавнов. Поиск кэшей пиратов максимально прост, особенно в условиях урагана. Лучшие карты — Dam Battlegrounds и Buried City.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1516279</guid>
-      <pubDate>Mon, 11 May 2026 19:10:41 +0000</pubDate>
     </item>
   </channel>
 </rss>
