@@ -7,7 +7,18 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Tue, 12 May 2026 05:10:41 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2026 06:10:40 +0000</lastBuildDate>
+    <item>
+      <title>Discord расширяет подписку Nitro новыми преимуществами.</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>Сервис Discord усилил программу подписки Nitro, добавив скидки на игровое оборудование и доступ к Game Pass Starter Edition. Пользователи получат возможность играть в игры вроде Stardew Valley и Fallout 4 бесплатно, а также использовать облачное стриминговое оборудование.
+
+Game Pass Starter Edition включает около 50 игр от Xbox, включая эксклюзивы и независимые проекты. Подписчики Nitro смогут получить скидки до 30% на Logitech и 15% на SteelSeries. Руководитель Discord Лю Чжан подчеркнула, что партнёры программы выбираются строго по критериям, важным для игроков.
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1516513</guid>
+      <pubDate>Tue, 12 May 2026 06:10:40 +0000</pubDate>
+    </item>
     <item>
       <title>Акции Nintendo упали на фоне повышения цен на Switch 2.</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -106,17 +117,6 @@
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1516279</guid>
       <pubDate>Mon, 11 May 2026 19:10:41 +0000</pubDate>
-    </item>
-    <item>
-      <title>Super Alloy Crush: Вдохновленная Mega Man X, но с уникальным стилем.</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>Super Alloy Crush — новая игра, которая сочетает элементы классических экшен-платформеров с яркими визуалами и плавным игровым процессом. Она вдохновлена серией Mega Man X, но не копирует её механику. Вместо этого разработчики добавили собственный стилистический подход, создавая уровни с проработанными боевыми сценариями и уникальными персонажами.
-
-Действие игры разворачивается на борту космического корабля Ranger, где команда ищет сокровища и сражается с врагами. Игра предлагает два персонажа: Мюю, специализирующуюся на ближнем бое, и Келли, предпочитающего дистанционные атаки. Каждый из них имеет свой стиль боя, что добавляет разнообразия в прохождение.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1516273</guid>
-      <pubDate>Mon, 11 May 2026 18:10:55 +0000</pubDate>
     </item>
   </channel>
 </rss>
