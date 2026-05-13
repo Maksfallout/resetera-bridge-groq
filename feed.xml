@@ -7,7 +7,18 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Wed, 13 May 2026 05:10:33 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 May 2026 06:10:40 +0000</lastBuildDate>
+    <item>
+      <title>Sega отменила проект Super Game после неудач с free-to-play.</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>Компания Sega сообщила о закрытии загадочного проекта Super Game. Это решение связано с низкими продажами и пересмотром стратегии free-to-play. Согласно финансовым отчётом 2026 года, новые free-to-play игры показали слабые результаты, что повлияло на выбор компании.
+
+Super Game впервые анонсировали в 2021 году как часть масштабной инициативы, включавшей разработку первого лица от европейского студии. Планировалось, что игра выйдет до конца марта 2026. В 2021 году Sega заявила о намерении инвестировать 100 млрд йен ($882 млн) в проект, а в 2023 году обещала «существенные успехи».
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1517467</guid>
+      <pubDate>Wed, 13 May 2026 06:10:40 +0000</pubDate>
+    </item>
     <item>
       <title>Sony пока не решила, когда выйдет PlayStation 6</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -112,17 +123,6 @@ Nintendo представит больше деталей в ближайших 
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1517440</guid>
       <pubDate>Tue, 12 May 2026 21:10:38 +0000</pubDate>
-    </item>
-    <item>
-      <title>Pocketpair зарегистрировала новый товарный знак 'Palworld Online'.</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>Японская студия Pocketpair, разработчик Palworld, подала в марте 2026 года заявку на товарный знак 'Palworld Online' в Южной Корее и США. Регистрация связана с подготовкой к выходу полноценной версии игры 1.0, которая включит официальный многопользовательский режим. В текущем раннем доступе уже доступны кооперативные сессии до четырёх человек и серверы для 32 участников.
-
-Параллельно Nintendo сталкивается с трудностями в патентной борьбе. Американская патентная служба отклонила иск Нинтендо о защите механики «заклинания персонажа и атаки». Эксперты полагают, что компания переоценила возможности монополизации игровых механик. Решение ещё можно обжаловать.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1517407</guid>
-      <pubDate>Tue, 12 May 2026 20:10:43 +0000</pubDate>
     </item>
   </channel>
 </rss>
