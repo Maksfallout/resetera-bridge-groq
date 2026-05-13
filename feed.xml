@@ -7,7 +7,18 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Wed, 13 May 2026 06:10:40 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 May 2026 07:10:42 +0000</lastBuildDate>
+    <item>
+      <title>Сега официально отменила амбициозный проект Super Game.</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>Компания Сега объявила об отмене разработки проекта Super Game — амбициозной онлайн-игры, которая должна была стать новой формой развлечений. Причиной стало усиление конкуренции и появление аналогичных проектов на рынке. Работу над игрой планировали завершить к марту 2026 года.
+
+Super Game позиционировалась как трёхдневная игра, разрабатываемая на основе опыта Сега в создании Phantasy Star Online 2. Руководство компании надеялось, что проект принесёт свыше 100 миллиардов йен дохода. Однако из-за сложной рыночной ситуации и необходимости перераспределения ресурсов разработка была приостановлена.
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1518418</guid>
+      <pubDate>Wed, 13 May 2026 07:10:42 +0000</pubDate>
+    </item>
     <item>
       <title>Sega отменила проект Super Game после неудач с free-to-play.</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -112,17 +123,6 @@ Nintendo представит больше деталей в ближайших 
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1517377</guid>
       <pubDate>Tue, 12 May 2026 22:10:37 +0000</pubDate>
-    </item>
-    <item>
-      <title>Xbox и Discord запускают новую версию Game Pass.</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>Xbox и Discord объединились для запуска «стартовой» версии подписки Game Pass для подписчиков Discord Nitro. Участники получат доступ к библиотеке из более чем 50 игр для ПК и консолей, включая Stardew Valley, Grounded, Hades, Fallout 4 и Doom Eternal, а также 10 часов облачной игры. Стоимость Discord Nitro останется неизменной, но включит новую версию подписки.
-
-Дополнительно участники Game Pass получат привилегии Discord Nitro, такие как 250 монет в месяц, увеличение наград за выполнение заданий и скидки в магазине. Руководитель Discord Лу Чжан отметил, что партнёрство направлено на расширение возможностей для игроков вне платформы. «Это шаг к созданию более гибкой системы, которая будет развиваться вместе с подпиской», — добавил он.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1517440</guid>
-      <pubDate>Tue, 12 May 2026 21:10:38 +0000</pubDate>
     </item>
   </channel>
 </rss>
