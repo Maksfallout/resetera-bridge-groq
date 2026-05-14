@@ -7,7 +7,18 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
     <language>ru</language>
-    <lastBuildDate>Thu, 14 May 2026 05:10:42 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 14 May 2026 08:10:35 +0000</lastBuildDate>
+    <item>
+      <title>Xbox Game Pass может выйти в Китае</title>
+      <link>https://t.me/ConsoleWorkShop</link>
+      <description>Компания Microsoft, возможно, готовится запустить подписку Xbox Game Pass на китайском рынке. После прихода нового руководителя Аши Шармы, подписка получила скидки, новых пользователей и иные изменения. В обновлении приложения Xbox для ПК нашли упоминания о «Проекте Салуки», связанном с расширением подписки в Китае.
+
+В файлах приложения также упоминается «Проект Позитрон», предположительно, связанный с переходом от дисковой версии игр к цифровой. Однако Microsoft пока не подтверждала эти планы. Основная проблема — китайские регуляторы не всегда одобряют игры, что может привести к сокращению библиотеки подписки для региона.
+
+📰 Дежурный по новостям: Пиксель.</description>
+      <guid isPermaLink="false">1518733</guid>
+      <pubDate>Thu, 14 May 2026 08:10:35 +0000</pubDate>
+    </item>
     <item>
       <title>007 First Light: Игра готова к выпуску 27 мая.</title>
       <link>https://t.me/ConsoleWorkShop</link>
@@ -112,19 +123,6 @@ Persona 4 Revival станет полной переработкой культ�
 📰 Дежурный по новостям: Пиксель.</description>
       <guid isPermaLink="false">1518790</guid>
       <pubDate>Wed, 13 May 2026 16:10:45 +0000</pubDate>
-    </item>
-    <item>
-      <title>Subnautica 2 выйдет 14 мая: детали запуска.</title>
-      <link>https://t.me/ConsoleWorkShop</link>
-      <description>Subnautica 2 — продолжение серии подводных приключений — выйдет 14 мая. Игра предлагает режимы для одиночной и кооперативной игры, а также исследование экзотических миров. Разработчики предупредили, что продукт в раннем доступе может содержать баги. Издательство Krafton и студия Unknown Worlds уже преодолели разногласия, чтобы завершить проект.
-
-Запуск состоится на Steam, Xbox Series X/S и Epic Games Store. В список бонусов за предзаказ входит уникальный синтезатор статуи. Игра сразу войдёт в Game Pass. Версии для PS5 и Nintendo Switch пока не анонсированы.
-
-Глобальные временные зоны: 14 мая в 8 часов утра по PDT, 15 мая в полночь по японскому времени. Подробности доступны в региональных разделах официального сайта.
-
-📰 Дежурный по новостям: Пиксель.</description>
-      <guid isPermaLink="false">1517689</guid>
-      <pubDate>Wed, 13 May 2026 14:10:39 +0000</pubDate>
     </item>
   </channel>
 </rss>
